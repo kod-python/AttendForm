@@ -82,7 +82,13 @@ const TaskManager: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`http://localhost:8000/api/attendances/${data.id}/`, {
+      // const response = await fetch(`http://localhost:8000/api/attendances/${data.id}/`, {
+      //   method: "PUT",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+
+      const response = await fetch(`https://kodsnake.pythonanywhere.com/api/attendances/${data.id}/`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -108,7 +114,10 @@ const TaskManager: React.FC = () => {
     const personToDelete = people[index];
 
     try {
-      await fetch(`http://localhost:8000/api/attendances/${personToDelete.id}/`, {
+      // await fetch(`http://localhost:8000/api/attendances/${personToDelete.id}/`, {
+      //   method: "DELETE",
+      // });
+      await fetch(`https://kodsnake.pythonanywhere.com/api/attendances/${personToDelete.id}/`, {
         method: "DELETE",
       });
 
@@ -123,7 +132,8 @@ const TaskManager: React.FC = () => {
   useEffect(() => {
     const getPeople = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/attendances/");
+        // const response = await fetch("http://localhost:8000/api/attendances/");
+        const response = await fetch("https://kodsnake.pythonanywhere.com/api/attendances/");
         const data = await response.json();
         setPeople(data);
       } catch (error) {
