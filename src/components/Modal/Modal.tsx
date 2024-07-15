@@ -1,5 +1,5 @@
 import React from "react";
-import { IoCloseOutline } from "react-icons/io5";
+// import { IoCloseOutline } from "react-icons/io5";
 
 interface ModalProps {
   isVisible: boolean;
@@ -24,7 +24,8 @@ const Modal: React.FC<ModalProps> = ({ isVisible, onClose, children }) => {
           className="text-white text-xl place-self-end"
           onClick={() => onClose()}
         >
-          <IoCloseOutline />
+          {/* <IoCloseOutline /> */}
+          X
         </button>
 
         <div className="bg-white p-2 rounded">{children}</div>

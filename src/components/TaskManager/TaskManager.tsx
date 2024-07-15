@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import Modal from "../Modal/Modal";
-import { MdDeleteForever } from "react-icons/md";
-import { FaEdit } from "react-icons/fa";
+// import { MdDeleteForever } from "react-icons/md";
+// import { FaEdit } from "react-icons/fa";
 import { FaSpinner } from "react-icons/fa";
 
 const TaskManager: React.FC = () => {
@@ -180,7 +180,8 @@ const TaskManager: React.FC = () => {
                   className="text-green-500"
                 >
 
-                  <FaEdit size={30} />
+                  {/* <FaEdit size={30} /> */}
+                  EDIT
                 </button>
           
      
@@ -196,7 +197,7 @@ const TaskManager: React.FC = () => {
         <div className="flex items-center gap-3">
           <span className="animate-spin"><FaSpinner  /></span>
           
-          <p>Deleting ....<MdDeleteForever size={30} /></p>
+          {/* <p>Deleting ....<MdDeleteForever size={30} /></p> */}
         </div>
       ) : (
         <div>
@@ -205,7 +206,8 @@ const TaskManager: React.FC = () => {
         </div>
       )}
 
-<MdDeleteForever size={30}/>
+{/* <MdDeleteForever size={30}/> */}
+DELETE
 </div>
 
                   
