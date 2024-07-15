@@ -2,7 +2,7 @@
 import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import Link from "next/link";
 import { ImSpinner9 } from "react-icons/im";
-import { FaSpinner } from "react-icons/fa";
+// import { FaSpinner } from "react-icons/fa";
 
 
 
@@ -117,7 +117,7 @@ const Signup = () => {
 
 {isLoading ? (
         <div className="flex items-center gap-3">
-          <span className="animate-spin"><FaSpinner  /></span>
+          {/* <span className="animate-spin"><FaSpinner  /></span> */}
           
           <p>Loading ....</p>
         </div>
