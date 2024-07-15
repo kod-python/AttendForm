@@ -82,17 +82,17 @@ const TaskManager: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // const response = await fetch(`http://localhost:8000/api/attendances/${data.id}/`, {
-      //   method: "PUT",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-
-      const response = await fetch(`https://kodsnake.pythonanywhere.com/api/attendances/${data.id}/`, {
+      const response = await fetch(`http://localhost:8000/api/attendances/${data.id}/`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
+
+      // const response = await fetch(`https://kodsnake.pythonanywhere.com/api/attendances/${data.id}/`, {
+      //   method: "PUT",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
         body: JSON.stringify(data),
       });
 
@@ -114,12 +114,12 @@ const TaskManager: React.FC = () => {
     const personToDelete = people[index];
 
     try {
-      // await fetch(`http://localhost:8000/api/attendances/${personToDelete.id}/`, {
-      //   method: "DELETE",
-      // });
-      await fetch(`https://kodsnake.pythonanywhere.com/api/attendances/${personToDelete.id}/`, {
+      await fetch(`http://localhost:8000/api/attendances/${personToDelete.id}/`, {
         method: "DELETE",
       });
+      // await fetch(`https://kodsnake.pythonanywhere.com/api/attendances/${personToDelete.id}/`, {
+      //   method: "DELETE",
+      // });
 
       setPeople((prevPeople) =>
         prevPeople.filter((_, personIndex) => personIndex !== index)
@@ -132,8 +132,8 @@ const TaskManager: React.FC = () => {
   useEffect(() => {
     const getPeople = async () => {
       try {
-        // const response = await fetch("http://localhost:8000/api/attendances/");
-        const response = await fetch("https://kodsnake.pythonanywhere.com/api/attendances/");
+        const response = await fetch("http://localhost:8000/api/attendances/");
+        // const response = await fetch("https://kodsnake.pythonanywhere.com/api/attendances/");
         const data = await response.json();
         setPeople(data);
       } catch (error) {
@@ -179,13 +179,36 @@ const TaskManager: React.FC = () => {
                   onClick={() => handleEdit(index)}
                   className="text-green-500"
                 >
+
                   <FaEdit size={30} />
                 </button>
+          
+     
                 <button
                   onClick={() => handleDelete(index)}
                   className="text-green-500"
                 >
-                  <MdDeleteForever size={30} />
+
+<div className="flex justify-center">
+
+
+{isLoading ? (
+        <div className="flex items-center gap-3">
+          <span className="animate-spin"><FaSpinner  /></span>
+          
+          <p>Deleting ....<MdDeleteForever size={30} /></p>
+        </div>
+      ) : (
+        <div>
+         
+          <p></p>
+        </div>
+      )}
+
+<MdDeleteForever size={30}/>
+</div>
+
+                  
                 </button>
               </div>
             </li>
