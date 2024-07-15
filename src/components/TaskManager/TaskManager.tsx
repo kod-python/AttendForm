@@ -3,7 +3,7 @@ import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import Modal from "../Modal/Modal";
 // import { MdDeleteForever } from "react-icons/md";
 // import { FaEdit } from "react-icons/fa";
-import { FaSpinner } from "react-icons/fa";
+// import { FaSpinner } from "react-icons/fa";
 
 const TaskManager: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -195,7 +195,7 @@ const TaskManager: React.FC = () => {
 
 {isLoading ? (
         <div className="flex items-center gap-3">
-          <span className="animate-spin"><FaSpinner  /></span>
+          {/* <span className="animate-spin"><FaSpinner  /></span> */}
           
           {/* <p>Deleting ....<MdDeleteForever size={30} /></p> */}
         </div>
