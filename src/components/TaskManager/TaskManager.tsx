@@ -151,12 +151,12 @@ const TaskManager: React.FC = () => {
       </h1>
 
       <div className="mt-[-200px] ">
-        <div className="">
+        <div className="p-20">
           {people.map((person, index) => (
-            <li key={person.id} className="flex justify-between">
-              <table>
+            <li key={person.id} className="flex  justify-between">
+              <table className="border p-[20px]">
                 <thead>
-                  <tr className="flex items-center gap-40 p-[20px]">
+                  <tr className="flex items-center gap-[220px] p-[20px]">
                     <th>ID</th>
                     <th>FIRST NAME</th>
                     <th>LAST NAME</th>
@@ -165,12 +165,12 @@ const TaskManager: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="flex items-center gap-40 p-[20px]">
-                    <td className="flex items-center gap-40 p-[20px]">{person.id}</td>
-                    <td className="flex items-center gap-40 p-[20px]">{person.firstName}</td>
-                    <td className="flex items-center gap-40 p-[20px]">{person.lastName}</td>
-                    <td className="flex items-center gap-40 p-[20px]">{person.email}</td>
-                    <td className="flex items-center gap-40 p-[20px]">{person.course}</td>
+                  <tr className="flex items-center  gap-[224px] p-[20px]">
+                    <td >{person.id}</td>
+                    <td>{person.firstName}</td>
+                    <td>{person.lastName}</td>
+                    <td >{person.email}</td>
+                    <td >{person.course}</td>
                   </tr>
                 </tbody>
               </table>
