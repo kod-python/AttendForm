@@ -151,7 +151,7 @@ const TaskManager: React.FC = () => {
       </h1>
 
       <div className="mt-[-200px] ">
-        <div className="p-20">
+        <div className="p-20 object-contain">
           {people.map((person, index) => (
             <li key={person.id} className="flex  justify-between">
               <table className="border p-[20px]">

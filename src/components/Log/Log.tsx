@@ -4,16 +4,24 @@ import { useRouter } from "next/router";
 
 const Login = () => {
   const [data, setData] = useState({
-    firstName: "",
+   
     email: "",
+    password: ""
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setData((prev) => ({ ...prev, [name]: value }));
+  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = event.target;
+  //   setData((prev) => ({ ...prev, [name]: value }));
+  // };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (event: FormEvent) => {
@@ -21,7 +29,7 @@ const Login = () => {
     setIsLoading(true);
     setError("");
     try {
-      const response = await fetch("", {
+      const response = await fetch(`http://localhost:8000/api/authen/${data}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,10 +40,10 @@ const Login = () => {
       const responseData = await response.json();
 
       if (response.ok) {
-        // Redirect to a specific page upon successful login
+       
         router.push("/");
       } else {
-        // Display error message
+    
         setError(responseData.message || "Invalid login credentials");
       }
       setIsLoading(false);
@@ -56,25 +64,25 @@ const Login = () => {
           LOGIN PAGE
         </h1>
         <label htmlFor="firstName" className="text-gray-500">
-          First Name
+          email
         </label>
         <input
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          value={data.firstName}
+          type="email"
+          name="email"
+          placeholder="email"
+          value={data.email}
           onChange={handleChange}
           className="border p-2 rounded w-full outline-blue-100"
         />
 
         <label htmlFor="email" className="text-gray-500">
-          Email
+          Password
         </label>
         <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={data.email}
+          type="password"
+          name="password"
+          placeholder="password"
+          value={data.password}
           onChange={handleChange}
           className="border p-2 rounded w-full outline-blue-100"
         />

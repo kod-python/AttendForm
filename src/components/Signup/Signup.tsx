@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 // import { ImSpinner9 } from "react-icons/im";
 // import { FaSpinner } from "react-icons/fa";
 
@@ -10,10 +11,14 @@ import Link from "next/link";
 
 const Signup = () => {
   const [data, setData] = useState({
-    username: "",
+    firstName: "",
+    lastName:"",
     email: "",
     password: "",
   });
+
+
+  const router = useRouter();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -21,12 +26,14 @@ const Signup = () => {
   };
 
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     setIsLoading(true);
     try {
-      const response = await fetch("", {
+      // const response = await fetch("http://localhost:8000/api/signup/", {
+        const response = await fetch("https://rattleviper.pythonanywhere.com/api/signup/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,14 +41,34 @@ const Signup = () => {
         body: JSON.stringify(data),
       });
 
+     
+      if (!response.ok){
+        throw new Error(`HTTP error status: ${response.status}`);
+
+      }
+
       const responseData = await response.json();
       console.log(responseData);
+
+      if (responseData.error){
+        console.error(responseData.error);
+        alert(responseData.error)
+      }else{
+        router.push('/LoginPage')
+      }
+
+    
+
 
       setIsLoading(false);
     } catch (error) {
       console.error("Error submitting form:", error);
+      alert('A user is already using the same email')
+      setError('A user is already using the same email')
       setIsLoading(false);
     }
+
+  
   };
 
   
@@ -72,16 +99,29 @@ const Signup = () => {
           SIGNUP PAGE
         </h1>
         <label htmlFor="username" className="text-gray-500">
-          Username
+          firstName
         </label>
         <input
           type="text"
-          name="username"
-          placeholder="username"
-          value={data.username}
+          name="firstName"
+          placeholder="firstName"
+          value={data.firstName}
           onChange={handleChange}
           className="border p-2 rounded w-full outline-blue-100"
         />
+
+       <label htmlFor="username" className="text-gray-500">
+          lastName
+        </label>
+        <input
+          type="text"
+          name="lastName"
+          placeholder="lastName"
+          value={data.lastName}
+          onChange={handleChange}
+          className="border p-2 rounded w-full outline-blue-100"
+        />
+
 
         <label htmlFor="email" className="text-gray-500">
           Email
@@ -132,9 +172,11 @@ const Signup = () => {
 </div>
 
         </button>
+
+        {error && <p className="text-red-500">{error}</p>}
         <p className="text-gray-500">
           If you are already signed up, please login here{" "}
-          <Link href="/logPage" className="underline text-blue-400">
+          <Link href="/LoginPage" className="underline text-blue-400">
             Login
           </Link>
         </p>
