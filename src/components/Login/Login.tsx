@@ -20,6 +20,8 @@ const Login = () => {
     });
   };
 
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     setIsLoading(true);
@@ -74,8 +76,11 @@ const Login = () => {
         />
 
         <label htmlFor="password" className="text-gray-500">Password</label>
+
+        <div className="relative">
+
         <input
-          type="password"
+          type={passwordVisible ? "text" : "password"}
           name="password"
           id="password"
           placeholder="*******"
@@ -83,6 +88,11 @@ const Login = () => {
           onChange={handleChange}
           className="border p-[3px] pl-[10px] rounded w-full outline-blue-100"
         />
+         <button  type="button" onClick={() => setPasswordVisible(!passwordVisible)} className="absolute  top-2">
+            {passwordVisible ? "Hide" : "Show"}
+          </button>
+        </div>
+       
 
         <button
           type="submit"

@@ -27,6 +27,7 @@ const Signup = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -138,14 +139,23 @@ const Signup = () => {
         <label htmlFor="password" className="text-gray-500">
           Password
         </label>
+
+        <div className="relative">
+
         <input
-          type="password"
+          type={passwordVisible ? "text" : "password"}
           name="password"
           placeholder="************"
           value={data.password}
           onChange={handleChange}
           className="border p-2 rounded w-full outline-blue-100"
         />
+          <button  type="button" onClick={() => setPasswordVisible(!passwordVisible)} className="absolute  top-2">
+            {passwordVisible ? "Hide" : "Show"}
+          </button>
+
+        </div>
+    
 
         <button
           type="submit"
